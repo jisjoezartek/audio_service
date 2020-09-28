@@ -1076,6 +1076,7 @@ class AudioServiceBackground {
   /// any requests by the client to play, pause and otherwise control audio
   /// playback.
   static Future<void> run(BackgroundAudioTask taskBuilder()) async {
+        Future.delayed(Duration(milliseconds: 1000)).whenComplete(() async{
     _running = true;
     _backgroundChannel =
         const MethodChannel('ryanheise.com/audioServiceBackground');
@@ -1232,6 +1233,7 @@ class AudioServiceBackground {
       // whether an exception occurred in onStart.
       await _backgroundChannel.invokeMethod('started');
     }
+           });
   }
 
   /// Shuts down the background audio task within the background isolate.
